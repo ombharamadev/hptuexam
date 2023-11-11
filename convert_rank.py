@@ -1,9 +1,17 @@
 import pandas as pd
 import os
+
+def folder_exists(folder_path):
+    return os.path.exists(folder_path)
+
 def generate(new_json):
     roll_num = new_json["roll"]
-    folder_path = "rank/"+str(roll_num)
-
+    folder_path = "rank/"+str(roll_num)+""
+    check_folder = folder_exists(folder_path)
+    
+    if check_folder == True:
+        return "ok"
+    
     if not os.path.exists(folder_path):
         os.makedirs(folder_path)
         print(f"Folder '{folder_path}' created successfully.")
